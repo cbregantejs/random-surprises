@@ -14,7 +14,7 @@
     </head>
 
     <body>
-        <button class="btn-back">
+        <button class="btn-back" title="Volver">
             <img src="./assets/back.png" alt="back">
         </button>
         <main id="card">
@@ -37,6 +37,11 @@
                 <button id="submit">Enviar</button>
             </section>
         </main>
+
+        <button class="btn-shared-url">
+            <img class="copy-img" src="./assets/copy.png" alt="copy" title="Copiar">
+            <img class="share-img" src="./assets/share.png" alt="share" title="Compartir">
+        </button>
     </body>
 
     <script type="text/javascript">
@@ -44,6 +49,7 @@
         const message = document.getElementById("message");
         const card = document.getElementById("card");
         const backBtn = document.querySelector(".btn-back");
+        const sharedBtn = document.querySelector(".btn-shared-url");
 
         cover.addEventListener("click", () => {
             cover.classList.add("animate");
@@ -55,11 +61,37 @@
             window.location.href = "?";
         });
 
+        sharedBtn.addEventListener("click", () => {
+            // if mobile share or copy if desktop
+            if (navigator.share) {
+                navigator.share({
+                    title: "Feliz día de la madre",
+                    text: "¡Feliz día de la madre!",
+                    url: window.location.href,
+                });
+            } else {
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                const hash = urlParams.get("hash");
+                const url = window.location.href;
+                navigator.clipboard.writeText(url);
+                alert("URL copiada al portapapeles");
+            }
+
+            // const queryString = window.location.search;
+            // const urlParams = new URLSearchParams(queryString);
+            // const hash = urlParams.get("hash");
+            // const url = window.location.href;
+            // navigator.clipboard.writeText(url);
+            // alert("URL copiada al portapapeles");
+        });
+
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const hash = urlParams.get("hash");
 
         if (hash) {
+            sharedBtn.style.display = "block";
             backBtn.style.display = "block";
             const decodedName = atob(hash);
             card.style.display = "block";

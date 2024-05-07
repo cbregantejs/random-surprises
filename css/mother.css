@@ -156,3 +156,33 @@ section {
 .btn-back:hover{
     transform: scale(1.2);
 }
+
+.btn-shared-url{
+    display: none;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.btn-shared-url img{
+    width: 50px;
+}
+
+.btn-shared-url .copy-img {
+    display: block;
+}
+.btn-shared-url .share-img{
+    display: none;
+}
+
+@media screen and (max-width: 765px){
+    .btn-shared-url .copy-img {
+        display: none;
+    }
+    .btn-shared-url .share-img{
+        display: block;
+    }
+}
