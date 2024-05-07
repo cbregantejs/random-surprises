@@ -26,7 +26,6 @@
             </section>
             <section id="message">
                 <h1>¡Feliz día de la madre!</h1>
-                <h1>De tu hijo que te quiere mucho ❤️</h1>
             </section>
         </main>
 
@@ -96,7 +95,11 @@
             const decodedName = atob(hash);
             card.style.display = "block";
             message.innerHTML = `<h1>¡Feliz día de la madre ${decodedName}!</h1>
-                <h1>De tu hijo que te quiere mucho ❤️</h1>`;
+                <h1>
+                    En este Día de la Madre, quiero que sepas cuánto te valoro. 
+                    Tu dedicación y sacrificio son la razón por la que soy quien soy hoy.
+                    ❤️
+                </h1>`;
         } else {
             const cardInput = document.getElementById("card__input");
             cardInput.style.display = "flex";

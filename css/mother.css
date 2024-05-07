@@ -89,7 +89,8 @@ section {
 }
 
 #message h1 {
-    margin: 0;
+    text-align: center;
+    margin: 10px 35px;
     font-size: 27px;
 }
 
