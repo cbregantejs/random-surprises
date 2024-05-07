@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=0.65" />
+        <meta charset="UTF-8" />
+        <title>Tienes un mensaje</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./css/mother.css">
+    </head>
+
+    <body>
+        <button class="btn-back">
+            <img src="./assets/back.png" alt="back">
+        </button>
+        <main id="card">
+            <section id="cover">
+                <img class="roses" src="./assets/roses.png" alt="roses"/>
+                <h1>Para la mejor madre del mundo</h1>
+                <h2>Te quiero ❤️</h2>
+                <img class="tap" src="./assets/tap.png" alt="tap"/>
+            </section>
+            <section id="message">
+                <h1>¡Feliz día de la madre!</h1>
+                <h1>De tu hijo que te quiere mucho ❤️</h1>
+            </section>
+        </main>
+
+        <main id="card__input">
+            <section id="inputContainer">
+                <h1>Ingresa su nombre</h1>
+                <input type="text" id="name" />
+                <button id="submit">Enviar</button>
+            </section>
+        </main>
+    </body>
+
+    <script type="text/javascript">
+        const cover = document.getElementById("cover");
+        const message = document.getElementById("message");
+        const card = document.getElementById("card");
+        const backBtn = document.querySelector(".btn-back");
+
+        cover.addEventListener("click", () => {
+            cover.classList.add("animate");
+            cover.classList.add("active");
+            message.classList.add("animate");
+        });
+
+        backBtn.addEventListener("click", () => {
+            window.location.href = "?";
+        });
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const hash = urlParams.get("hash");
+
+        if (hash) {
+            backBtn.style.display = "block";
+            const decodedName = atob(hash);
+            card.style.display = "block";
+            message.innerHTML = `<h1>¡Feliz día de la madre ${decodedName}!</h1>
+                <h1>De tu hijo que te quiere mucho ❤️</h1>`;
+        } else {
+            const cardInput = document.getElementById("card__input");
+            cardInput.style.display = "flex";
+            const input = document.getElementById("name");
+            const submit = document.getElementById("submit");
+
+            submit.addEventListener("click", () => {
+                const name = btoa(input.value);
+                window.location.href = `?hash=${name}`;
+            });
+        }    
+    </script>
+</html>
