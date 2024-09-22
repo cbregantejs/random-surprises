@@ -62,6 +62,7 @@
 
         sharedBtn.addEventListener("click", () => {
             // if mobile share or copy if desktop
+            console.log(navigator.share);
             if (navigator.share) {
                 navigator.share({
                     title: "Feliz día de la madre",
